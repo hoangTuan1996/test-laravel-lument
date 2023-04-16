@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+
+  student:
+    build: .
+    image: student
+    volumes:
+      - .:/app
+    container_name: student
+    ports:
+      - 8012:80
+    networks:
+      - tuandev_laravel
+    restart: always
+
+  student_composer:
+    image: student
+    volumes:
+      - .:/app
+    command: composer install
+    networks:
+      - tuandev_laravel
+
+networks:
+  tuandev_laravel:
+    external: true
